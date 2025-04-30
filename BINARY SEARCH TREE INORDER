@@ -1,0 +1,44 @@
+class Node:
+    def __init__(self, data):  # Fixed constructor
+        self.data = data
+        self.left = None
+        self.right = None
+
+class Tree:
+    def __init__(self):  # Fixed constructor
+        self.root = None
+
+    def insert(self, data):
+        z = Node(data)
+        if self.root is None:
+            self.root = z
+        else:
+            temp = self.root
+            while True:
+                if data < temp.data:
+                    if temp.left is None:
+                        temp.left = z
+                        break
+                    else:
+                        temp = temp.left
+                else:
+                    if temp.right is None:
+                        temp.right = z
+                        break
+                    else:
+                        temp = temp.right
+
+    def inorder(self, root):
+        if root:
+            self.inorder(root.left)
+            print(root.data, end=" ")
+            self.inorder(root.right)
+
+# Create tree and insert values
+x = Tree()
+for val in [10, 20, 7, 12, 30, 13, 9, 6, 11, 41, 25, 5, 8]:
+    x.insert(val)
+
+print("Inorder traversal:")
+x.inorder(x.root)
+print()
